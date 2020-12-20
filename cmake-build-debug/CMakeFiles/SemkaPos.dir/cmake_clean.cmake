@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/SemkaPos.dir/main.c.o"
+  "CMakeFiles/SemkaPos.dir/server.c.o"
   "SemkaPos.pdb"
   "SemkaPos"
 )

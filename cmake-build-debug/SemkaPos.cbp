@@ -78,7 +78,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/tmp/tmp.6NVnZ48fDg/main.c">
+		<Unit filename="/tmp/tmp.6NVnZ48fDg/server.c">
 			<Option target="SemkaPos"/>
 		</Unit>
 		<Unit filename="/tmp/tmp.6NVnZ48fDg/CMakeLists.txt">

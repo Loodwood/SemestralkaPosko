@@ -3,4 +3,5 @@ project(SemkaPos C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(SemkaPos main.c)
+add_executable(SemkaPos server.c)
+
