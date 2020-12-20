@@ -6,19 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/tmp/tmp.6NVnZ48fDg/server.c
-sys/types.h
--
-sys/socket.h
--
-netinet/in.h
--
+/tmp/tmp.6NVnZ48fDg/HTTP_server.c
 stdio.h
--
-stdlib.h
 -
 string.h
 -
-unistd.h
+sys/socket.h
 -
+arpa/inet.h
+-
+stdlib.h
+/tmp/tmp.6NVnZ48fDg/stdlib.h
 

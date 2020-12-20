@@ -57,38 +57,38 @@ include CMakeFiles/SemkaPos.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/SemkaPos.dir/flags.make
 
-CMakeFiles/SemkaPos.dir/HTTP_server.c.o: CMakeFiles/SemkaPos.dir/flags.make
-CMakeFiles/SemkaPos.dir/HTTP_server.c.o: ../HTTP_server.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.6NVnZ48fDg/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/SemkaPos.dir/HTTP_server.c.o"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/SemkaPos.dir/HTTP_server.c.o   -c /tmp/tmp.6NVnZ48fDg/HTTP_server.c
+CMakeFiles/SemkaPos.dir/HTTP_client.c.o: CMakeFiles/SemkaPos.dir/flags.make
+CMakeFiles/SemkaPos.dir/HTTP_client.c.o: ../HTTP_client.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.6NVnZ48fDg/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/SemkaPos.dir/HTTP_client.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/SemkaPos.dir/HTTP_client.c.o   -c /tmp/tmp.6NVnZ48fDg/HTTP_client.c
 
-CMakeFiles/SemkaPos.dir/HTTP_server.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/SemkaPos.dir/HTTP_server.c.i"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /tmp/tmp.6NVnZ48fDg/HTTP_server.c > CMakeFiles/SemkaPos.dir/HTTP_server.c.i
+CMakeFiles/SemkaPos.dir/HTTP_client.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/SemkaPos.dir/HTTP_client.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /tmp/tmp.6NVnZ48fDg/HTTP_client.c > CMakeFiles/SemkaPos.dir/HTTP_client.c.i
 
-CMakeFiles/SemkaPos.dir/HTTP_server.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/SemkaPos.dir/HTTP_server.c.s"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /tmp/tmp.6NVnZ48fDg/HTTP_server.c -o CMakeFiles/SemkaPos.dir/HTTP_server.c.s
+CMakeFiles/SemkaPos.dir/HTTP_client.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/SemkaPos.dir/HTTP_client.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /tmp/tmp.6NVnZ48fDg/HTTP_client.c -o CMakeFiles/SemkaPos.dir/HTTP_client.c.s
 
-CMakeFiles/SemkaPos.dir/HTTP_server.c.o.requires:
+CMakeFiles/SemkaPos.dir/HTTP_client.c.o.requires:
 
-.PHONY : CMakeFiles/SemkaPos.dir/HTTP_server.c.o.requires
+.PHONY : CMakeFiles/SemkaPos.dir/HTTP_client.c.o.requires
 
-CMakeFiles/SemkaPos.dir/HTTP_server.c.o.provides: CMakeFiles/SemkaPos.dir/HTTP_server.c.o.requires
-	$(MAKE) -f CMakeFiles/SemkaPos.dir/build.make CMakeFiles/SemkaPos.dir/HTTP_server.c.o.provides.build
-.PHONY : CMakeFiles/SemkaPos.dir/HTTP_server.c.o.provides
+CMakeFiles/SemkaPos.dir/HTTP_client.c.o.provides: CMakeFiles/SemkaPos.dir/HTTP_client.c.o.requires
+	$(MAKE) -f CMakeFiles/SemkaPos.dir/build.make CMakeFiles/SemkaPos.dir/HTTP_client.c.o.provides.build
+.PHONY : CMakeFiles/SemkaPos.dir/HTTP_client.c.o.provides
 
-CMakeFiles/SemkaPos.dir/HTTP_server.c.o.provides.build: CMakeFiles/SemkaPos.dir/HTTP_server.c.o
+CMakeFiles/SemkaPos.dir/HTTP_client.c.o.provides.build: CMakeFiles/SemkaPos.dir/HTTP_client.c.o
 
 
 # Object files for target SemkaPos
 SemkaPos_OBJECTS = \
-"CMakeFiles/SemkaPos.dir/HTTP_server.c.o"
+"CMakeFiles/SemkaPos.dir/HTTP_client.c.o"
 
 # External object files for target SemkaPos
 SemkaPos_EXTERNAL_OBJECTS =
 
-SemkaPos: CMakeFiles/SemkaPos.dir/HTTP_server.c.o
+SemkaPos: CMakeFiles/SemkaPos.dir/HTTP_client.c.o
 SemkaPos: CMakeFiles/SemkaPos.dir/build.make
 SemkaPos: CMakeFiles/SemkaPos.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/tmp/tmp.6NVnZ48fDg/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable SemkaPos"
@@ -99,7 +99,7 @@ CMakeFiles/SemkaPos.dir/build: SemkaPos
 
 .PHONY : CMakeFiles/SemkaPos.dir/build
 
-CMakeFiles/SemkaPos.dir/requires: CMakeFiles/SemkaPos.dir/HTTP_server.c.o.requires
+CMakeFiles/SemkaPos.dir/requires: CMakeFiles/SemkaPos.dir/HTTP_client.c.o.requires
 
 .PHONY : CMakeFiles/SemkaPos.dir/requires
 

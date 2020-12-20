@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/SemkaPos.dir/HTTP_server.c.o"
+  "CMakeFiles/SemkaPos.dir/HTTP_client.c.o"
   "SemkaPos.pdb"
   "SemkaPos"
 )
