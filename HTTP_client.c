@@ -2,6 +2,7 @@
 #include<string.h>	//strlen
 #include<sys/socket.h>
 #include<arpa/inet.h>	//inet_addr
+#include "stdlib.h"
 
 int main(int argc , char *argv[])
 {
@@ -15,10 +16,16 @@ int main(int argc , char *argv[])
     {
         printf("Could not create socket");
     }
-
-    server.sin_addr.s_addr = inet_addr("74.125.235.20");
+    // convert ip addrees to long format, google ip
+    // we need to know the IP address of the remote server you are connecting to.
+    // server.sin_addr.s_addr = inet_addr("74.125.235.20");
+    // server.sin_family = AF_INET;
+    // server.sin_port = htons( 80 );
+    //
+    bzero((char*)&server, sizeof(server));
     server.sin_family = AF_INET;
-    server.sin_port = htons( 80 );
+    server.sin_addr.s_addr = INADDR_ANY;
+    server.sin_port = htons(atoi(argv[1]));
 
     //Connect to remote server
     if (connect(socket_desc , (struct sockaddr *)&server , sizeof(server)) < 0)

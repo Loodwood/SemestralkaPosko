@@ -3,5 +3,5 @@ project(SemkaPos C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(SemkaPos HTTP_server.c)
+add_executable(SemkaPos HTTP_client.c)
 
