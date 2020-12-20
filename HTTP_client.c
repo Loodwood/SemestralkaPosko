@@ -83,6 +83,7 @@ int main(int argc , char *argv[])
         puts("recv failed");
     }
     puts("Reply received\n");
+    //tu vraciame to co dostane z requestu Get
     puts(server_reply);
 
 
