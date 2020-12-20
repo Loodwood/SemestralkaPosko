@@ -123,32 +123,32 @@ SemkaPos/fast:
 	$(MAKE) -f CMakeFiles/SemkaPos.dir/build.make CMakeFiles/SemkaPos.dir/build
 .PHONY : SemkaPos/fast
 
-server.o: server.c.o
+HTTP_server.o: HTTP_server.c.o
 
-.PHONY : server.o
+.PHONY : HTTP_server.o
 
 # target to build an object file
-server.c.o:
-	$(MAKE) -f CMakeFiles/SemkaPos.dir/build.make CMakeFiles/SemkaPos.dir/server.c.o
-.PHONY : server.c.o
+HTTP_server.c.o:
+	$(MAKE) -f CMakeFiles/SemkaPos.dir/build.make CMakeFiles/SemkaPos.dir/HTTP_server.c.o
+.PHONY : HTTP_server.c.o
 
-server.i: server.c.i
+HTTP_server.i: HTTP_server.c.i
 
-.PHONY : server.i
+.PHONY : HTTP_server.i
 
 # target to preprocess a source file
-server.c.i:
-	$(MAKE) -f CMakeFiles/SemkaPos.dir/build.make CMakeFiles/SemkaPos.dir/server.c.i
-.PHONY : server.c.i
+HTTP_server.c.i:
+	$(MAKE) -f CMakeFiles/SemkaPos.dir/build.make CMakeFiles/SemkaPos.dir/HTTP_server.c.i
+.PHONY : HTTP_server.c.i
 
-server.s: server.c.s
+HTTP_server.s: HTTP_server.c.s
 
-.PHONY : server.s
+.PHONY : HTTP_server.s
 
 # target to generate assembly for a file
-server.c.s:
-	$(MAKE) -f CMakeFiles/SemkaPos.dir/build.make CMakeFiles/SemkaPos.dir/server.c.s
-.PHONY : server.c.s
+HTTP_server.c.s:
+	$(MAKE) -f CMakeFiles/SemkaPos.dir/build.make CMakeFiles/SemkaPos.dir/HTTP_server.c.s
+.PHONY : HTTP_server.c.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... SemkaPos"
-	@echo "... server.o"
-	@echo "... server.i"
-	@echo "... server.s"
+	@echo "... HTTP_server.o"
+	@echo "... HTTP_server.i"
+	@echo "... HTTP_server.s"
 .PHONY : help
 
 
