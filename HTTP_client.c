@@ -4,6 +4,8 @@
 #include<arpa/inet.h>	//inet_addr
 #include <netdb.h>
 #include "stdlib.h"
+#include <limits.h>
+#include <unistd.h>
 
 // http client reaguje na spravy typu :
 //GET HEAD POST PUT DELETE CONNECT OPTIONS TRACE PATCH
@@ -48,7 +50,7 @@ int http_socket_connetct(char *host, in_port_t port) {
 
 int main(int argc , char *argv[])
 {
-    int socket_desc = http_socket_connetct("www.snv24.sk",80);
+    int socket_desc = http_socket_connetct("www.facebook.com",80);
     char* message, server_reply[1000000];
 
     //Send some data
@@ -71,10 +73,20 @@ int main(int argc , char *argv[])
               " Connection: keep-alive\r\n\r\n"
               " Keep-Alive: 300\r\n";
 
-    message = "GET /wp-content/uploads/2020/04/easter-5001093_1920-800x445.jpg HTTP/1.1\r\n"
-              "Host: www.snv24.sk\r\n\r\n "
-              "Connection: keep-alive\r\n\r\n"
-              " Keep-Alive: 300\r\n";
+    /*char cwd[PATH_MAX];
+    if (getcwd(cwd, sizeof(cwd)) != NULL) {
+        printf("Current working dir: %s\n", cwd);
+    } else {
+        perror("getcwd() error");
+        return 1;
+    }
+     */
+
+    message = "GET / HTTP/1.1\r\n\r\n";
+   // message = "GET / HTTP/1.1\r\n"
+              //   "Host: www.facebook.com\r\n\r\n "
+              // "Connection: keep-alive\r\n\r\n"
+    //" Keep-Alive: 300\r\n";
 
     // send posleme jednoducho data na server cez socket
     if( send(socket_desc , message , strlen(message) , 0) < 0)
@@ -90,6 +102,7 @@ int main(int argc , char *argv[])
         printf("File could not opened");
     }
     printf("Idem nacitat\n");
+    /*
     while(1)
     {
 
@@ -117,13 +130,13 @@ int main(int argc , char *argv[])
     }
 
     puts("Reply received\n");
-    //puts(server_reply);
+    puts(server_reply);
 
     fclose(file);
     printf("File created and saved successfully. :) \n");
 
     return 0;
-    /*
+     */
     //Receive a reply from the server
     if( recv(socket_desc, server_reply , 2000 , 0) < 0)
     {
@@ -134,7 +147,6 @@ int main(int argc , char *argv[])
 
 
 
-
     return 0;
-     */
+
 }
