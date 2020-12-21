@@ -1,0 +1,7 @@
+Treba spravit:
+->Že zadáte presne ftp alebo http adresu súboru, ktorý chcete stiahnuť.(parsnut url na header http alebo ftp)
+->WinSCP sluzi na zobrazenie stiahnutych suborov
+->FTP a HTTP client maju byt v jednom maine ako vlakna(producenti)
+->Problem konzument - producent
+->vlakno -> pripoji na server a stiahne subor 
+->lokalne ulozisko -> definovat adresare kde to ma stahovať
