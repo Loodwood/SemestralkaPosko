@@ -1,3 +1,0 @@
-/tmp/tmp.FLUReiwJ6H/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/tmp/tmp.FLUReiwJ6H/cmake-build-debug/CMakeFiles/edit_cache.dir
-/tmp/tmp.FLUReiwJ6H/cmake-build-debug/CMakeFiles/SemkaPos.dir
