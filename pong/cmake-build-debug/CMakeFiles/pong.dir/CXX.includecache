@@ -39,7 +39,7 @@ stdlib.h
 -
 vector
 -
-SDL2/SDL.h
+SDL/SDL.h
 -
 time.h
 -

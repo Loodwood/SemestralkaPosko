@@ -2,7 +2,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <vector>
-#include <SDL2/SDL.h>
+#include "include/SDL.h"
 #include <time.h>
 #include <random>
 //#include "GameManager.h"
