@@ -1,1 +1,1 @@
-/usr/bin/c++   -g  “-static-libgcc;-static-libstdc++” CMakeFiles/pong.dir/main.cpp.o  -o pong  -L/tmp/tmp.VrGvwyhZ55/lib -Wl,-rpath,/tmp/tmp.VrGvwyhZ55/lib -lSDL2main -lSDL2 
+/usr/bin/c++    -std=c++11 -lmingw32 -g  -static-libgcc -static-libstdc++ CMakeFiles/pong.dir/main.cpp.o  -o pong  -L/tmp/tmp.VrGvwyhZ55/lib -Wl,-rpath,/tmp/tmp.VrGvwyhZ55/lib -lSDL2main -lSDL2 

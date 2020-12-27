@@ -5,16 +5,32 @@
 #include "include/SDL.h"
 #include <time.h>
 #include <random>
-//#include "GameManager.h"
+#include "GameManager.h"
 #include <vector>
 #include "clientPong.h"
-
+//
 using namespace std;
 
-int main(int argc, char* argv[]) {
+int main(int argc, char** argv) {
+    if(SDL_Init(SDL_INIT_EVERYTHING) == -1){
+        cout << "Something wentming wrong! " << SDL_GetError() << endl;
+    }
+
+    SDL_Window* window = SDL_CreateWindow("SDL_Demo", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+                                          1280, 720, SDL_WINDOW_OPENGL);
+    if(window == nullptr){
+        cout << "Something also went wrong here" << endl;
+    }
+
+    SDL_Delay(2000);
+    SDL_Quit();
+    return 0;
+}
+
+/*int main(int argc, char* argv[]) {
 
     //initialization client and game manager
-    clientPong *ClientHadik = new clientPong();
+    //clientPong *ClientHadik = new clientPong();
     //GameManager gameManager(2);
     //gameManager.initSnakes(ClientHadik);
     //gameManager.spawnFruit();
@@ -36,9 +52,9 @@ int main(int argc, char* argv[]) {
     );
     renderer = SDL_CreateRenderer(window, -1, 0);
 
-    /*  //if game is run
+    *//*  //if game is run
       bool playing = true;
-      while (playing) { *//* Main Game LOOP *//*
+      while (playing) { *//**//* Main Game LOOP *//**//*
 
         while (SDL_PollEvent(&e) != 0) {
             if (e.type == SDL_QUIT)
@@ -109,6 +125,7 @@ int main(int argc, char* argv[]) {
             playing = false;
             break;
         }
+        *//*
 
         //RENDERRING
         // Render gameplan
@@ -117,11 +134,11 @@ int main(int argc, char* argv[]) {
 
         // Fruit render
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-        SDL_RenderFillRect(renderer, gameManager.getFruit());
+        //SDL_RenderFillRect(renderer, gameManager.getFruit());
 
         // Snakes render
-        std::vector<Snake*> *snakes = gameManager.getSnakes();
-        for (int i = 0; i < snakes->size(); i++) {
+        //std::vector<Snake*> *snakes = gameManager.getSnakes();
+        *//*for (int i = 0; i < snakes->size(); i++) {
             if (i == 0) {
                 SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
             }
@@ -133,18 +150,18 @@ int main(int argc, char* argv[]) {
                 SDL_Rect* rect = snakes->at(i)->getSnake()->at(x);
                 SDL_RenderFillRect(renderer, rect);
             }
-        }
+        }*//*
 
         SDL_RenderPresent(renderer);
         SDL_Delay(600);
-    }
+
 
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
 
     // Clean up
-    delete ClientHadik;*/
+    //delete ClientHadik;
     SDL_Quit();
     return 0;
-}
+}*/
