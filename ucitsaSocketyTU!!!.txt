@@ -1,0 +1,1 @@
+http://www.beej.us/guide/bgnet/html/#what-is-a-socket
