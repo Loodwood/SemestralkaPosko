@@ -1,3 +1,4 @@
+/*
 #include "clientPong.h"
 
 clientPong::clientPong() {
@@ -47,7 +48,7 @@ int clientPong::clientConnect() {
     printf("Connected\n");
 
     pthread_t thread;
-    pthread_create(&thread, NULL, &clientHadik::rcvHelper, this);
+    pthread_create(&thread, NULL, &clientPong::rcvHelper, this);
 }
 
 int clientPong::sendToClient(char direction) {
@@ -64,3 +65,4 @@ int clientPong::sendToClient(char direction) {
         exit(1);
     }
 }
+*/

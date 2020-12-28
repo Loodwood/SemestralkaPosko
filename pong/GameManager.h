@@ -1,3 +1,4 @@
+/*
 #pragma once
 #include <vector>
 #include "Snake.h"
@@ -10,13 +11,13 @@
 class GameManager
 {
 private:
-	std::vector<Snake*> *snakes;
-	SDL_Rect *fruit;
+	std::vector<Padle*> *padles;
+	SDL_Rect *ball;
 public:
 	const static int WINDOW_HEIGHT = 600;
 	const static int WINDOW_WIDTH = 800;
 	GameManager();
-	void initSnakes(clientPong *ClientHadik);
+	void initPadles(clientPong *CliePong);
 	void spawnFruit();
 	bool fruitAte();
 	void moveAllSnakes();
@@ -26,9 +27,10 @@ public:
 	void setDirectionToSnakes(char *directions);
 	GameManager(int numberOfPlayers);
 	SDL_Rect* getFruit();
-	std::vector<Snake*>* getSnakes();
+	std::vector<Padle*>* getPadles();
 	~GameManager();
 
 
 };
 
+*/

@@ -1,4 +1,48 @@
-/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /tmp/tmp.VrGvwyhZ55
--- Configuring done
--- Generating done
--- Build files have been written to: /tmp/tmp.VrGvwyhZ55/cmake-build-debug
+"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\tmp\SemkaPos\pong
+-- The C compiler identification is GNU 3.4.5
+-- The CXX compiler identification is GNU 3.4.5
+-- Check for working C compiler: C:/MinGW/bin/gcc.exe
+-- Check for working C compiler: C:/MinGW/bin/gcc.exe - broken
+CMake Error at C:/Program Files/JetBrains/CLion 2020.2.4/bin/cmake/win/share/cmake-3.17/Modules/CMakeTestCCompiler.cmake:60 (message):
+  The C compiler
+
+    "C:/MinGW/bin/gcc.exe"
+
+  is not able to compile a simple test program.
+
+  It fails with the following output:
+
+    Change Dir: C:/tmp/SemkaPos/pong/cmake-build-debug/CMakeFiles/CMakeTmp
+    
+    Run Build Command(s):C:/MinGW/bin/mingw32-make.exe cmTC_d1d90/fast && C:/MinGW/bin/mingw32-make.exe  -f CMakeFiles\cmTC_d1d90.dir\build.make CMakeFiles/cmTC_d1d90.dir/build
+    mingw32-make.exe[1]: Entering directory 'C:/tmp/SemkaPos/pong/cmake-build-debug/CMakeFiles/CMakeTmp'
+    Building C object CMakeFiles/cmTC_d1d90.dir/testCCompiler.c.obj
+    C:\MinGW\bin\gcc.exe    -o CMakeFiles\cmTC_d1d90.dir\testCCompiler.c.obj   -c C:\tmp\SemkaPos\pong\cmake-build-debug\CMakeFiles\CMakeTmp\testCCompiler.c
+    Linking C executable cmTC_d1d90.exe
+    "C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_d1d90.dir\link.txt --verbose=1
+    C:\MinGW\bin\gcc.exe      -Wl,@CMakeFiles\cmTC_d1d90.dir\objects1.rsp  -o cmTC_d1d90.exe -Wl,--out-implib,libcmTC_d1d90.dll.a -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
+    C:\MinGW\bin\..\lib\gcc\mingw32\3.4.5\..\..\..\..\mingw32\bin\ld.exe: /mingw/lib/libmingw32.a(setargv.o):(.text+0x3d): undefined reference to `__chkstk_ms'
+    C:\MinGW\bin\..\lib\gcc\mingw32\3.4.5\..\..\..\..\mingw32\bin\ld.exe: /mingw/lib/libmingwex.a(glob.o):(.text+0x736): undefined reference to `__chkstk_ms'
+    C:\MinGW\bin\..\lib\gcc\mingw32\3.4.5\..\..\..\..\mingw32\bin\ld.exe: /mingw/lib/libmingwex.a(glob.o):(.text+0x7a4): undefined reference to `__chkstk_ms'
+    C:\MinGW\bin\..\lib\gcc\mingw32\3.4.5\..\..\..\..\mingw32\bin\ld.exe: /mingw/lib/libmingwex.a(glob.o):(.text+0x86f): undefined reference to `__chkstk_ms'
+    C:\MinGW\bin\..\lib\gcc\mingw32\3.4.5\..\..\..\..\mingw32\bin\ld.exe: /mingw/lib/libmingwex.a(glob.o):(.text+0xcab): undefined reference to `__chkstk_ms'
+    C:\MinGW\bin\..\lib\gcc\mingw32\3.4.5\..\..\..\..\mingw32\bin\ld.exe: /mingw/lib/libmingwex.a(glob.o):(.text+0xcf2): more undefined references to `__chkstk_ms' follow
+    collect2: ld returned 1 exit status
+    CMakeFiles\cmTC_d1d90.dir\build.make:106: recipe for target 'cmTC_d1d90.exe' failed
+    mingw32-make.exe[1]: *** [cmTC_d1d90.exe] Error 1
+    mingw32-make.exe[1]: Leaving directory 'C:/tmp/SemkaPos/pong/cmake-build-debug/CMakeFiles/CMakeTmp'
+    Makefile:140: recipe for target 'cmTC_d1d90/fast' failed
+    mingw32-make.exe: *** [cmTC_d1d90/fast] Error 2
+    
+    
+
+  
+
+  CMake will not be able to correctly generate this project.
+Call Stack (most recent call first):
+  CMakeLists.txt:2 (project)
+
+
+-- Configuring incomplete, errors occurred!
+See also "C:/tmp/SemkaPos/pong/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+See also "C:/tmp/SemkaPos/pong/cmake-build-debug/CMakeFiles/CMakeError.log".

@@ -1,3 +1,4 @@
+/*
 #include "GameManager.h"
 
 void GameManager::initSnakes(clientPong *ClientHadik)
@@ -186,3 +187,4 @@ GameManager::~GameManager()
 	delete snakes;
 	delete fruit;
 }
+*/

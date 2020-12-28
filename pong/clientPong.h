@@ -1,3 +1,4 @@
+/*
 #pragma once
 #include <stdio.h>
 #include <stdlib.h>
@@ -35,6 +36,7 @@ public:
     int getStartY() {return startY;}
     int clientConnect();
     clientPong();
+    // vlakno na spustenie hry a ziskavanie vstupov od hracov cez sockety
     void *rcvData(void) {
         char buffer[2];
         int n = read(sockfd, buffer, 2);
@@ -51,7 +53,7 @@ public:
         } else if (idFromBuffer == 1) {
             clientToSendToID = 0;
         } else {
-            std::cout << "clientHadik.h : invalid value in idFromBuffer" << std::endl;
+            std::cout << "clientPong.h : invalid value in idFromBuffer" << std::endl;
             perror("invalid idFromBuffer variable");
         }
         while (1) {
@@ -71,36 +73,6 @@ public:
 
         }
 
-        /*int clientSocket = socketClient;
-
-        char data[1024];
-        int read = recv(clientSocket, data, 1024, 0);
-        data[read] = '\0';
-        int cislo = (int)data[0];
-        //id clienta
-       // int idClient;
-       //len pre 2 HRACOV !!!
-        if (cislo == 0) {
-            clientToSendToID = 1;
-        } else {
-             clientToSendToID = 0;
-        }
-        idClient = cislo;
-        printf("%d\n", cislo);
-
-        while (1) {
-            //direction
-            read = recv(clientSocket, data, 1024, 0);
-            data[read] = '\0';
-            printf("%s\n",data);
-            if (data[0] == 'c') {
-                printf("%c recieve ready -c \n",data);
-                canStart = true;
-                continue;
-            }
-            direction = data[0];
-            printf("%s\n", data);
-        }*/
     }
     static void *rcvHelper(void *context) {
         return ((clientPong *)context)->rcvData();
@@ -108,25 +80,5 @@ public:
     void * recieveData(void * sockID);
     int getClientID();
     int sendToClient(char direction);
-    /*int sendToClient(int xStart, int yStart) {
-        char input[1024];
-
-        input[0] = clientToSendToID;
-        //scanf tu nebude, namiesto toho parameter z main.cpp->id klienta
-    //scanf("%s", input); // id, index ->1,2
-        send(socketClient, input, 1024, 0);
-
-        input[0] = xStart;
-        input[1] = yStart;
-        //namiesto scanf parameter direction z main.cpp
-    //scanf("%[^\n]s", input); //direction
-        send(socketClient, input, 1024, 0);
-    }*/
-
-
-    /*static void* recv_wrapper(void* object)
-    {
-        reinterpret_cast<clientHadik*>(object)->recieveData((void *) &socketClient);
-        return 0;
-    }*/
 };
+*/
