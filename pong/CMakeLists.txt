@@ -25,7 +25,7 @@ set(SOURCE_FILES main.cpp)
 
 
 add_executable(pong ${SOURCE_FILES})
-target_link_libraries(pong  SDL2main SDL2 )
+target_link_libraries(pong SDL2main SDL2 )
 
 
 
