@@ -1,3 +1,0 @@
-C:/tmp/SemkaPos/pong/cmake-build-debug/CMakeFiles/pong.dir
-C:/tmp/SemkaPos/pong/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/tmp/SemkaPos/pong/cmake-build-debug/CMakeFiles/rebuild_cache.dir
