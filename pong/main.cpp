@@ -12,7 +12,7 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-    if(SDL_Init(SDL_INIT_EVERYTHING) == -1){
+/*    if(SDL_Init(SDL_INIT_EVERYTHING) == -1){
         cout << "Something wentming wrong! " << SDL_GetError() << endl;
     }
 
@@ -23,7 +23,8 @@ int main(int argc, char** argv) {
     }
 
     SDL_Delay(2000);
-    SDL_Quit();
+    SDL_Quit();*/
+    std::cout<<"Ahoj"<<std::endl;
     return 0;
 }
 
