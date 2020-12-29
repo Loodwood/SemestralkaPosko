@@ -16,6 +16,7 @@
 #include "SDL.h"
 #include "Vec2.h"
 #include "Ball.h"
+#include "Paddle.h"
 
 using namespace std;
 
@@ -40,6 +41,13 @@ int main(int argc, char** argv) {
         Ball ball(
             Vec2((WINDOW_WIDTH / 2.0f) - (BALL_WIDTH / 2.0f),
             (WINDOW_HEIGHT / 2.0f) - (BALL_HEIGHT / 2.0f)));
+        
+        // Create the paddles
+        Paddle paddleOne(
+	Vec2(50.0f, (WINDOW_HEIGHT / 2.0f) - (PADDLE_HEIGHT / 2.0f)));
+
+        Paddle paddleTwo(
+	Vec2(WINDOW_WIDTH - 50.0f, (WINDOW_HEIGHT / 2.0f) - (PADDLE_HEIGHT / 2.0f)));
 
 	// Herna logika 
 	{
@@ -85,11 +93,15 @@ int main(int argc, char** argv) {
                        
                        // Vykresli lopticku
                        ball.Draw(renderer);
+                       
+                       // Draw the paddles
+                       paddleOne.Draw(renderer);
+                       paddleTwo.Draw(renderer);
 
 			// Present the backbuffer
 			SDL_RenderPresent(renderer);
 		}
-	
+                
 
 	// Cleanup
 	SDL_DestroyRenderer(renderer);

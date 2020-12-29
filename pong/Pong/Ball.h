@@ -22,6 +22,7 @@ public:
         rect.h = BALL_HEIGHT;
     }
       
+        // vzdy sa bude volat pri vykreslovani a pohybe lopticky
     void Draw(SDL_Renderer* renderer)
     {
         rect.x = static_cast<int>(position.x);

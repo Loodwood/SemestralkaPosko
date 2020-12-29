@@ -5,6 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>Ball.h</itemPath>
+      <itemPath>Paddle.h</itemPath>
       <itemPath>Vec2.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -53,6 +54,8 @@
       </compileType>
       <item path="Ball.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Paddle.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Vec2.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="clientPong.cpp" ex="false" tool="1" flavor2="0">
@@ -83,6 +86,8 @@
         </asmTool>
       </compileType>
       <item path="Ball.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Paddle.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Vec2.h" ex="false" tool="3" flavor2="0">
       </item>
