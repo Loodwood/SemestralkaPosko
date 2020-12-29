@@ -18,6 +18,7 @@
 #include "Vec2.h"
 #include "Ball.h"
 #include "Paddle.h"
+#include "PlayerScore.h"
 
 using namespace std;
 
@@ -39,6 +40,16 @@ int main(int argc, char** argv) {
         // vytvorit okno kde chceme vykreslovat hru 
 	SDL_Window* window = SDL_CreateWindow("Pong", 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
+        
+        
+        // inicializovaie nasho fontu pre text 
+        TTF_Font* scoreFont = TTF_OpenFont("C:/Users/marti/Desktop/SEMKAPOS/pong/Pong/DejaVuSansMono.ttf",40);
+        
+        // Create the player score text fields
+        PlayerScore playerOneScoreText(Vec2(WINDOW_WIDTH / 4, 20), renderer, scoreFont);
+
+        PlayerScore playerTwoScoreText(Vec2(3 * WINDOW_WIDTH / 4, 20), renderer, scoreFont);
+        
         
         //vytvor lopticku  
         Ball ball(
@@ -100,6 +111,10 @@ int main(int argc, char** argv) {
                        // Draw the paddles
                        paddleOne.Draw(renderer);
                        paddleTwo.Draw(renderer);
+                       
+                       // Display the scores
+                        playerOneScoreText.Draw();
+                        playerTwoScoreText.Draw();
 
 			// Present the backbuffer
 			SDL_RenderPresent(renderer);
@@ -109,6 +124,8 @@ int main(int argc, char** argv) {
 	// Cleanup
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
+        TTF_CloseFont(scoreFont);
+        TTF_Quit();
 	SDL_Quit();
         }
     return 0;
