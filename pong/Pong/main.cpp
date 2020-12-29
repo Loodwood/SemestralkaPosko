@@ -14,6 +14,7 @@
 #include <cstdlib>
 #include <iostream>
 #include "SDL.h"
+#include "SDL_ttf.h"             // pre nas text 
 #include "Vec2.h"
 #include "Ball.h"
 #include "Paddle.h"
@@ -32,6 +33,8 @@ int main(int argc, char** argv) {
     
 	// Initialize SDL components
 	SDL_Init(SDL_INIT_VIDEO);
+        // pre zobrazenie textu 
+        TTF_Init();
 
         // vytvorit okno kde chceme vykreslovat hru 
 	SDL_Window* window = SDL_CreateWindow("Pong", 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);

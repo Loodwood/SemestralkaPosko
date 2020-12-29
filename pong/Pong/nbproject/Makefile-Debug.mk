@@ -61,7 +61,7 @@ LDLIBSOPTIONS=-L../x86_64-w64-mingw32_new/lib
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pong.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pong ${OBJECTFILES} ${LDLIBSOPTIONS} -lcygwin -lSDL2main -lSDL2 -lSDL2_image
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pong ${OBJECTFILES} ${LDLIBSOPTIONS} -lcygwin -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf
 
 ${OBJECTDIR}/clientPong.o: clientPong.cpp
 	${MKDIR} -p ${OBJECTDIR}
