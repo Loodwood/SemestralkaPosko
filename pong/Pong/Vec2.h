@@ -1,0 +1,38 @@
+
+#ifndef VEC2_H
+#define VEC2_H
+// trieda ako pomocka pri pozicach a pohybu objektov 2D array x,y 
+class Vec2 {
+public:
+    Vec2()
+        : x(0.0f), y(0.0f)
+    {}
+    
+    Vec2(float x, float y)
+        : x(x), y(y)
+    {}
+    
+    // podme teraz overloadnut niektore operatory  position += velocity * time
+    Vec2 operator+(Vec2 const& rhs)
+    {
+        return Vec2(x + rhs.x, y + rhs.y);
+    }
+    
+    Vec2& operator+=(Vec2 const& rhs)
+    {
+        x += rhs.x;
+        y += rhs.y;
+        
+        return *this;
+    }
+    
+    Vec2 operator*(float rhs) 
+    {
+        return Vec2(x * rhs, y * rhs);
+    }
+    
+    float x, y;
+};
+
+#endif /* VEC2_H */
+

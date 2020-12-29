@@ -4,6 +4,10 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>Ball.h</itemPath>
+      <itemPath>Paddle.h</itemPath>
+      <itemPath>PlayerScore.h</itemPath>
+      <itemPath>Vec2.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -46,9 +50,17 @@
           <linkerAddLib>
             <pElem>../x86_64-w64-mingw32_new/lib</pElem>
           </linkerAddLib>
-          <commandLine>-lcygwin -lSDL2main -lSDL2 -lSDL2_image</commandLine>
+          <commandLine>-lcygwin -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf</commandLine>
         </linkerTool>
       </compileType>
+      <item path="Ball.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Paddle.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PlayerScore.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Vec2.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="clientPong.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clientPong.h" ex="false" tool="3" flavor2="0">
@@ -76,6 +88,14 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Ball.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Paddle.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PlayerScore.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Vec2.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="clientPong.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clientPong.h" ex="false" tool="3" flavor2="0">
