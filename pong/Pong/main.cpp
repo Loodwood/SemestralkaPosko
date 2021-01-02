@@ -188,6 +188,9 @@ int main(int argc, char** argv) {
 
 	// Herna logika 
 	{
+                int playerOneScore = 0;
+                int playerTwoScore = 0;
+            
 		bool running = true;
                 bool buttons[4] = {};
                 
@@ -299,6 +302,20 @@ int main(int argc, char** argv) {
                         }else if (contact.type != CollisionType::None)
                         {
                                 ball.CollideWithWall(contact);
+                                
+                                if (contact.type == CollisionType::Left)
+                                    {
+                                            ++playerTwoScore;
+                                            
+
+                                            playerTwoScoreText.SetScore(playerTwoScore);
+                                    }
+                                    else if (contact.type == CollisionType::Right)
+                                    {
+                                            ++playerOneScore;
+
+                                            playerOneScoreText.SetScore(playerOneScore);
+                                    }
                         }
                     
 			// Clear the window to black
