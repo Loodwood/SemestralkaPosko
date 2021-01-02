@@ -13,11 +13,13 @@
 #define SDL_MAIN_HANDLED
 #include <cstdlib>
 #include <iostream>
+#include <bits/basic_file.h>
 #include "SDL.h"
 #include "Vec2.h"
 #include "Ball.h"
 #include "Paddle.h"
-#include "SDL_ttf.h"
+#include "PlayerScore.h"
+
 #include "SDL_image.h"
 
 using namespace std;
@@ -40,8 +42,7 @@ int main(int argc, char** argv) {
 	SDL_Init(SDL_INIT_VIDEO);
         //Initialization flag
         bool success = true;
-        // pre zobrazenie textu 
-        //TTF_Init();
+        
        
           
         // vytvorit okno kde chceme vykreslovat hru 
@@ -53,9 +54,9 @@ int main(int argc, char** argv) {
         //TTF_Font* scoreFont = TTF_OpenFont("C:/Users/marti/Desktop/SEMKAPOS/pong/Pong/DejaVuSansMono.ttf",40);
         
         // Create the player score text fields
-        //PlayerScore playerOneScoreText(Vec2(WINDOW_WIDTH / 4, 20), renderer, scoreFont);
+        PlayerScore playerOneScoreText(Vec2(WINDOW_WIDTH / 4, 20), renderer);
 
-        //PlayerScore playerTwoScoreText(Vec2(3 * WINDOW_WIDTH / 4, 20), renderer, scoreFont);
+        PlayerScore playerTwoScoreText(Vec2(3 * WINDOW_WIDTH / 4, 20), renderer);
         
       
         
@@ -122,8 +123,8 @@ int main(int argc, char** argv) {
                        paddleTwo.Draw(renderer);
                        
                        // Display the scores
-                        //playerOneScoreText.Draw();
-                        //playerTwoScoreText.Draw();
+                        playerOneScoreText.Draw();
+                        playerTwoScoreText.Draw();
 
 			// Present the backbuffer
 			SDL_RenderPresent(renderer);
@@ -136,6 +137,7 @@ int main(int argc, char** argv) {
         //TTF_CloseFont(scoreFont);
         //TTF_Quit();
 	SDL_Quit();
+       
         }
     return 0;
 };
