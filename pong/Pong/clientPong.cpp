@@ -1,8 +1,8 @@
-/*
+
 #include "clientPong.h"
 
 clientPong::clientPong() {
-    direction = 'r';
+    direction = ' ';
     startX = -1;
     startY = -1;
     clientConnect();
@@ -65,4 +65,4 @@ int clientPong::sendToClient(char direction) {
         exit(1);
     }
 }
-*/
+
