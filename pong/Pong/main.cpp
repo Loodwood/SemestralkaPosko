@@ -14,11 +14,11 @@
 #include <cstdlib>
 #include <iostream>
 #include "SDL.h"
-#include "SDL_ttf.h"             // pre nas text 
 #include "Vec2.h"
 #include "Ball.h"
 #include "Paddle.h"
-#include "PlayerScore.h"
+#include "SDL_ttf.h"
+#include "SDL_image.h"
 
 using namespace std;
 
@@ -29,26 +29,35 @@ using namespace std;
 const int WINDOW_WIDTH = 1280;
 const int WINDOW_HEIGHT = 720;
 
+
+
+
+
 int main(int argc, char** argv) {
     
     
 	// Initialize SDL components
 	SDL_Init(SDL_INIT_VIDEO);
+        //Initialization flag
+        bool success = true;
         // pre zobrazenie textu 
-        TTF_Init();
-
+        //TTF_Init();
+       
+          
         // vytvorit okno kde chceme vykreslovat hru 
 	SDL_Window* window = SDL_CreateWindow("Pong", 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
         
         
         // inicializovaie nasho fontu pre text 
-        TTF_Font* scoreFont = TTF_OpenFont("C:/Users/marti/Desktop/SEMKAPOS/pong/Pong/DejaVuSansMono.ttf",40);
+        //TTF_Font* scoreFont = TTF_OpenFont("C:/Users/marti/Desktop/SEMKAPOS/pong/Pong/DejaVuSansMono.ttf",40);
         
         // Create the player score text fields
-        PlayerScore playerOneScoreText(Vec2(WINDOW_WIDTH / 4, 20), renderer, scoreFont);
+        //PlayerScore playerOneScoreText(Vec2(WINDOW_WIDTH / 4, 20), renderer, scoreFont);
 
-        PlayerScore playerTwoScoreText(Vec2(3 * WINDOW_WIDTH / 4, 20), renderer, scoreFont);
+        //PlayerScore playerTwoScoreText(Vec2(3 * WINDOW_WIDTH / 4, 20), renderer, scoreFont);
+        
+      
         
         
         //vytvor lopticku  
@@ -113,8 +122,8 @@ int main(int argc, char** argv) {
                        paddleTwo.Draw(renderer);
                        
                        // Display the scores
-                        playerOneScoreText.Draw();
-                        playerTwoScoreText.Draw();
+                        //playerOneScoreText.Draw();
+                        //playerTwoScoreText.Draw();
 
 			// Present the backbuffer
 			SDL_RenderPresent(renderer);
@@ -124,10 +133,13 @@ int main(int argc, char** argv) {
 	// Cleanup
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
-        TTF_CloseFont(scoreFont);
-        TTF_Quit();
+        //TTF_CloseFont(scoreFont);
+        //TTF_Quit();
 	SDL_Quit();
         }
     return 0;
 };
+
+
+
 
