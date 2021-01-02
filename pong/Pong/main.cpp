@@ -31,7 +31,9 @@ using namespace std;
 // konstasnty pre nase hracie okno 
  const int WINDOW_WIDTH = 1280;
  const int WINDOW_HEIGHT = 720;
+ // kontanty pre nas pohyb 
  const float PADDLE_SPEED = 1.0f;
+ const float BALL_SPEED = 1.0f;
 
 enum Buttons
 {
@@ -39,7 +41,108 @@ enum Buttons
 	PaddleOneDown,
 	PaddleTwoUp,
 	PaddleTwoDown,
+        
 };
+
+
+
+Contact CheckWallCollision(Ball const& ball)
+{
+	float ballLeft = ball.position.x;
+	float ballRight = ball.position.x + BALL_WIDTH;
+	float ballTop = ball.position.y;
+	float ballBottom = ball.position.y + BALL_HEIGHT;
+
+	Contact contact{};
+
+	if (ballLeft < 0.0f)
+	{
+		contact.type = CollisionType::Left;
+	}
+	else if (ballRight > WINDOW_WIDTH)
+	{
+		contact.type = CollisionType::Right;
+	}
+	else if (ballTop < 0.0f)
+	{
+		contact.type = CollisionType::Top;
+		contact.penetration = -ballTop;
+	}
+	else if (ballBottom > WINDOW_HEIGHT)
+	{
+		contact.type = CollisionType::Bottom;
+		contact.penetration = WINDOW_HEIGHT - ballBottom;
+	}
+
+	return contact;
+}
+
+
+Contact CheckPaddleCollision(Ball const& ball, Paddle const& paddle)
+{
+	float ballLeft = ball.position.x;
+	float ballRight = ball.position.x + BALL_WIDTH;
+	float ballTop = ball.position.y;
+	float ballBottom = ball.position.y + BALL_HEIGHT;
+
+	float paddleLeft = paddle.position.x;
+	float paddleRight = paddle.position.x + PADDLE_WIDTH;
+	float paddleTop = paddle.position.y;
+	float paddleBottom = paddle.position.y + PADDLE_HEIGHT;
+        
+        Contact contact{};
+	if (ballLeft >= paddleRight)
+	{
+		return contact;
+	}
+
+	if (ballRight <= paddleLeft)
+	{
+		return contact;
+	}
+
+	if (ballTop >= paddleBottom)
+	{
+		return contact;
+	}
+
+	if (ballBottom <= paddleTop)
+	{
+		return contact;
+	}
+        
+        float paddleRangeUpper = paddleBottom - (2.0f * PADDLE_HEIGHT / 3.0f);
+	float paddleRangeMiddle = paddleBottom - (PADDLE_HEIGHT / 3.0f);
+
+	if (ball.velocity.x < 0)
+	{
+		// Left paddle
+		contact.penetration = paddleRight - ballLeft;
+	}
+	else if (ball.velocity.x > 0)
+	{
+		// Right paddle
+		contact.penetration = paddleLeft - ballRight;
+	}
+
+	if ((ballBottom > paddleTop)
+	    && (ballBottom < paddleRangeUpper))
+	{
+		contact.type = CollisionType::Top;
+	}
+	else if ((ballBottom > paddleRangeUpper)
+	     && (ballBottom < paddleRangeMiddle))
+	{
+		contact.type = CollisionType::Middle;
+	}
+	else
+	{
+		contact.type = CollisionType::Bottom;
+	}
+
+	return contact;
+
+}
 
 
 
@@ -72,15 +175,15 @@ int main(int argc, char** argv) {
         //vytvor lopticku  
         Ball ball(
             Vec2((WINDOW_WIDTH / 2.0f) - (BALL_WIDTH / 2.0f),
-            (WINDOW_HEIGHT / 2.0f) - (BALL_HEIGHT / 2.0f)));
+            (WINDOW_HEIGHT / 2.0f) - (BALL_HEIGHT / 2.0f)),Vec2(BALL_SPEED, 0.0f));
         
         // Create the paddles
         Paddle paddleOne(
-	Vec2(50.0f, WINDOW_HEIGHT / 2.0f),
+	Vec2(50.0f, (WINDOW_HEIGHT / 2.0f) - (PADDLE_HEIGHT / 2.0f)),
                 Vec2(0.0f,0.0f));
 
         Paddle paddleTwo(
-	Vec2(WINDOW_WIDTH - 50.0f, WINDOW_HEIGHT / 2.0f),
+	Vec2(WINDOW_WIDTH - 50.0f, (WINDOW_HEIGHT / 2.0f) - (PADDLE_HEIGHT / 2.0f)),
                Vec2(0.0f,0.0f));
 
 	// Herna logika 
@@ -178,6 +281,25 @@ int main(int argc, char** argv) {
                         // Update the paddle positions
                         paddleOne.Update(dt);
                         paddleTwo.Update(dt);
+                        
+                        // Update the ball position
+                        ball.Update(dt);
+                        
+                       // Check collisions
+                        Contact contact1 = CheckPaddleCollision(ball, paddleOne);
+                        Contact contact2 = CheckPaddleCollision(ball, paddleTwo);
+                        Contact contact = CheckWallCollision(ball);
+                        if (contact1.type != CollisionType::None)
+                        {
+                                ball.CollideWithPaddle(contact1);
+                        }
+                        else if ( contact2.type != CollisionType::None)
+                        {
+                                ball.CollideWithPaddle(contact2);
+                        }else if (contact.type != CollisionType::None)
+                        {
+                                ball.CollideWithWall(contact);
+                        }
                     
 			// Clear the window to black
 			SDL_SetRenderDrawColor(renderer, 0x0, 0x0, 0x0, 0xFF);

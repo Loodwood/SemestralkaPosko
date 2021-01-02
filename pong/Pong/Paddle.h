@@ -48,7 +48,7 @@ public:
 	{
                 // Restrict to bottom of the screen
 		position.y = 720 - PADDLE_HEIGHT;
-                cout<< position.y <<endl;
+               
 	}
     }
             
