@@ -19,6 +19,7 @@
 #include "Ball.h"
 #include "Paddle.h"
 #include "PlayerScore.h"
+#include <chrono>
 
 #include "SDL_image.h"
 
@@ -28,10 +29,17 @@ using namespace std;
  * 
  */
 // konstasnty pre nase hracie okno 
-const int WINDOW_WIDTH = 1280;
-const int WINDOW_HEIGHT = 720;
+ const int WINDOW_WIDTH = 1280;
+ const int WINDOW_HEIGHT = 720;
+ const float PADDLE_SPEED = 1.0f;
 
-
+enum Buttons
+{
+	PaddleOneUp = 0,
+	PaddleOneDown,
+	PaddleTwoUp,
+	PaddleTwoDown,
+};
 
 
 
@@ -43,7 +51,7 @@ int main(int argc, char** argv) {
         //Initialization flag
         bool success = true;
         
-       
+
           
         // vytvorit okno kde chceme vykreslovat hru 
 	SDL_Window* window = SDL_CreateWindow("Pong", 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
@@ -68,18 +76,28 @@ int main(int argc, char** argv) {
         
         // Create the paddles
         Paddle paddleOne(
-	Vec2(50.0f, (WINDOW_HEIGHT / 2.0f) - (PADDLE_HEIGHT / 2.0f)));
+	Vec2(50.0f, WINDOW_HEIGHT / 2.0f),
+                Vec2(0.0f,0.0f));
 
         Paddle paddleTwo(
-	Vec2(WINDOW_WIDTH - 50.0f, (WINDOW_HEIGHT / 2.0f) - (PADDLE_HEIGHT / 2.0f)));
+	Vec2(WINDOW_WIDTH - 50.0f, WINDOW_HEIGHT / 2.0f),
+               Vec2(0.0f,0.0f));
 
 	// Herna logika 
 	{
 		bool running = true;
-
+                bool buttons[4] = {};
+                
+                // inicilizovanie kvoli pohybu 
+                
+                float dt = 0.0f;
 		// Continue looping and processing events until user exits
 		while (running)
 		{
+                    // herny cas zaciatok
+                    auto startTime = std::chrono::high_resolution_clock::now();
+                    
+                    
 			SDL_Event event;
 			while (SDL_PollEvent(&event))
 			{
@@ -94,9 +112,73 @@ int main(int argc, char** argv) {
 					{
 						running = false;
 					}
-				}
+                                        else if (event.key.keysym.sym == SDLK_w)
+                                        {
+                                                buttons[Buttons::PaddleOneUp] = true;
+                                        }
+                                        else if (event.key.keysym.sym == SDLK_s)
+                                        {
+                                                buttons[Buttons::PaddleOneDown] = true;
+                                        }
+                                        else if (event.key.keysym.sym == SDLK_UP)
+                                        {
+                                                buttons[Buttons::PaddleTwoUp] = true;
+                                        }
+                                        else if (event.key.keysym.sym == SDLK_DOWN)
+                                        {
+                                                buttons[Buttons::PaddleTwoDown] = true;
+                                        }
+                                }
+                                else if (event.type == SDL_KEYUP)
+                                {
+                                    if (event.key.keysym.sym == SDLK_w)
+                                    {
+                                            buttons[Buttons::PaddleOneUp] = false;
+                                    }
+                                    else if (event.key.keysym.sym == SDLK_s)
+                                    {
+                                            buttons[Buttons::PaddleOneDown] = false;
+                                    }
+                                    else if (event.key.keysym.sym == SDLK_UP)
+                                    {
+                                            buttons[Buttons::PaddleTwoUp] = false;
+                                    }
+                                    else if (event.key.keysym.sym == SDLK_DOWN)
+                                    {
+                                            buttons[Buttons::PaddleTwoDown] = false;
+                                    }
+                                }
 			}
-
+                        
+         if (buttons[Buttons::PaddleOneUp])
+	{
+		paddleOne.velocity.y = -PADDLE_SPEED;
+	}
+	else if (buttons[Buttons::PaddleOneDown])
+	{
+		paddleOne.velocity.y = PADDLE_SPEED;
+	}
+	else
+	{
+		paddleOne.velocity.y = 0.0f;
+	}
+                            
+        if (buttons[Buttons::PaddleTwoUp])
+	{
+		paddleTwo.velocity.y = -PADDLE_SPEED;
+	}
+	else if (buttons[Buttons::PaddleTwoDown])
+	{
+		paddleTwo.velocity.y = PADDLE_SPEED;
+	}
+	else
+	{
+		paddleTwo.velocity.y = 0.0f;
+	}
+                        // Update the paddle positions
+                        paddleOne.Update(dt);
+                        paddleTwo.Update(dt);
+                    
 			// Clear the window to black
 			SDL_SetRenderDrawColor(renderer, 0x0, 0x0, 0x0, 0xFF);
 			SDL_RenderClear(renderer);
@@ -128,6 +210,13 @@ int main(int argc, char** argv) {
 
 			// Present the backbuffer
 			SDL_RenderPresent(renderer);
+                        
+                        
+                        // Calculate frame time
+                        auto stopTime = std::chrono::high_resolution_clock::now();
+                        dt = std::chrono::duration<float, std::chrono::milliseconds::period>(stopTime - startTime).count();
+                        
+                        
 		}
                 
 
