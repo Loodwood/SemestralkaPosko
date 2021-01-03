@@ -46,7 +46,7 @@ build/Debug/Cygwin-Windows/main.o: main.cpp \
  ../x86_64-w64-mingw32_new/include/SDL2/SDL_version.h Vec2.h Ball.h \
  Paddle.h PlayerScore.h \
  ../x86_64-w64-mingw32_new/include/SDL2/SDL_image.h \
- ../x86_64-w64-mingw32_new/include/SDL2/SDL.h
+ ../x86_64-w64-mingw32_new/include/SDL2/SDL.h clientPong.h
 ../x86_64-w64-mingw32_new/include/SDL2/SDL.h:
 ../x86_64-w64-mingw32_new/include/SDL2/SDL_main.h:
 ../x86_64-w64-mingw32_new/include/SDL2/SDL_stdinc.h:
@@ -98,3 +98,4 @@ Paddle.h:
 PlayerScore.h:
 ../x86_64-w64-mingw32_new/include/SDL2/SDL_image.h:
 ../x86_64-w64-mingw32_new/include/SDL2/SDL.h:
+clientPong.h:

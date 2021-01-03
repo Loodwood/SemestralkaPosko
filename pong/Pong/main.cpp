@@ -22,6 +22,8 @@
 #include <chrono>
 
 #include "SDL_image.h"
+#include "clientPong.h"
+
 
 using namespace std;
 
@@ -153,7 +155,8 @@ int main(int argc, char** argv) {
 	SDL_Init(SDL_INIT_VIDEO);
         //Initialization flag
         bool success = true;
-        
+
+        clientPong *pong = new clientPong();
 
           
         // vytvorit okno kde chceme vykreslovat hru 
@@ -200,11 +203,16 @@ int main(int argc, char** argv) {
 		// Continue looping and processing events until user exits
 		while (running)
 		{
+
+                   
+                  
                     // herny cas zaciatok
                     auto startTime = std::chrono::high_resolution_clock::now();
                     
                     
+
 			SDL_Event event;
+                        if(pong->getCanStart()){ 
 			while (SDL_PollEvent(&event))
 			{
 				if (event.type == SDL_QUIT)
@@ -214,10 +222,31 @@ int main(int argc, char** argv) {
                                 // pozriem sa ci som stlacil esc 
 				else if (event.type == SDL_KEYDOWN)
 				{
+                                    
 					if (event.key.keysym.sym == SDLK_ESCAPE)
 					{
 						running = false;
 					}
+                                        else if (event.key.keysym.sym == SDLK_w && pong->getClientID()==0)
+                                        {
+                                                buttons[Buttons::PaddleOneUp] = true;
+                                                pong->sendToClient('u');
+                                        }
+                                        else if (event.key.keysym.sym == SDLK_s && pong->getClientID()==0)
+                                        {
+                                                buttons[Buttons::PaddleOneDown] = true;
+                                                pong->sendToClient('d');
+                                        }
+                                        else if (event.key.keysym.sym == SDLK_w && pong->getClientID()==1)
+                                        {
+                                                buttons[Buttons::PaddleTwoUp] = true;
+                                                pong->sendToClient('u');
+                                        }
+                                        else if (event.key.keysym.sym == SDLK_s && pong->getClientID()==1)
+                                        {
+                                                buttons[Buttons::PaddleTwoDown] = true;
+                                                pong->sendToClient('d');
+                                        }
                                         else if (event.key.keysym.sym == SDLK_w)
                                         {
                                                 buttons[Buttons::PaddleOneUp] = true;
@@ -233,6 +262,7 @@ int main(int argc, char** argv) {
                                         else if (event.key.keysym.sym == SDLK_DOWN)
                                         {
                                                 buttons[Buttons::PaddleTwoDown] = true;
+
                                         }
                                 }
                                 else if (event.type == SDL_KEYUP)
@@ -240,10 +270,19 @@ int main(int argc, char** argv) {
                                     if (event.key.keysym.sym == SDLK_w)
                                     {
                                             buttons[Buttons::PaddleOneUp] = false;
+
+                                            buttons[Buttons::PaddleTwoUp] = false;
+                                            pong->sendToClient(' ');
+
                                     }
                                     else if (event.key.keysym.sym == SDLK_s)
                                     {
                                             buttons[Buttons::PaddleOneDown] = false;
+
+                                            buttons[Buttons::PaddleTwoDown] = false;
+                                            pong->sendToClient(' ');
+
+
                                     }
                                     else if (event.key.keysym.sym == SDLK_UP)
                                     {
@@ -316,15 +355,19 @@ int main(int argc, char** argv) {
 
                                             playerOneScoreText.SetScore(playerOneScore);
                                     }
+
+                        }
+                    }
+
                                 
                                 if(playerOneScore == 10 || playerTwoScore == 10) 
                                 {
                                     running = false;
                                     
                                 }
-                        }
+                        
                     
-			// Clear the window to black
+                	// Clear the window to black
 			SDL_SetRenderDrawColor(renderer, 0x0, 0x0, 0x0, 0xFF);
 			SDL_RenderClear(renderer);
                         
@@ -341,6 +384,37 @@ int main(int argc, char** argv) {
                            }
                        
                        }
+                       
+                       //moving enemy paddle 
+                       
+                       if(pong->getClientID()==0){
+                           if(pong->getDirection()=='u'){
+                           buttons[Buttons::PaddleTwoUp] = true;
+                           
+                           } else if(pong->getDirection()=='d'){
+                           buttons[Buttons::PaddleTwoDown] = true;
+                           
+                           }else if(pong->getDirection()==' '){
+                           buttons[Buttons::PaddleTwoDown] = false;
+                           buttons[Buttons::PaddleTwoUp] = false;
+                           }                             
+                       }else {
+                           if(pong->getDirection()=='u'){
+                           buttons[Buttons::PaddleOneUp] = true;
+                           
+                           } else if(pong->getDirection()=='d'){
+                           buttons[Buttons::PaddleOneDown] = true;
+                           
+                           }else if(pong->getDirection()==' '){
+                           buttons[Buttons::PaddleOneDown] = false;
+                           buttons[Buttons::PaddleOneUp] = false;
+                           }
+                       }
+        
+                       
+                       
+                       
+                       
                        
                        // Vykresli lopticku
                        ball.Draw(renderer);

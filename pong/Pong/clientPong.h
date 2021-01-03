@@ -1,4 +1,4 @@
-/*
+
 #pragma once
 #include <stdio.h>
 #include <stdlib.h>
@@ -68,7 +68,7 @@ public:
                 canStart = true;
                 continue;
             }
-           // std::cout << "prisla direction : " << letter << std::endl;
+            std::cout << "prisla direction : " << letter << std::endl;
             this->direction = buffer[0];
 
         }
@@ -81,4 +81,4 @@ public:
     int getClientID();
     int sendToClient(char direction);
 };
-*/
+
