@@ -316,6 +316,12 @@ int main(int argc, char** argv) {
 
                                             playerOneScoreText.SetScore(playerOneScore);
                                     }
+                                
+                                if(playerOneScore == 10 || playerTwoScore == 10) 
+                                {
+                                    running = false;
+                                    
+                                }
                         }
                     
 			// Clear the window to black
