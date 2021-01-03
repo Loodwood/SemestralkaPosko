@@ -47,7 +47,11 @@ public:
        
 		SDL_FreeSurface(surface);
 		SDL_DestroyTexture(texture);
-                string urlPath  = "C:/Users/janho/OneDrive/Desktop/SemestralkaPosko-master/pong/Pong/score/";
+
+               // string urlPath  = "C:/Users/janho/OneDrive/Desktop/SemestralkaPosko-master/pong/Pong/score/";
+
+                string urlPath  = "C:/Users/marti/Desktop/SEMKAPOS/pong/Pong/score/";
+
                 string scoreLabel = urlPath + to_string(score) + ".bmp";
                 char *scoreUI = &scoreLabel[0];
                

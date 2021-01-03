@@ -24,6 +24,7 @@
 #include "SDL_image.h"
 #include "clientPong.h"
 
+
 using namespace std;
 
 /*
@@ -154,6 +155,7 @@ int main(int argc, char** argv) {
 	SDL_Init(SDL_INIT_VIDEO);
         //Initialization flag
         bool success = true;
+
         clientPong *pong = new clientPong();
 
           
@@ -201,11 +203,14 @@ int main(int argc, char** argv) {
 		// Continue looping and processing events until user exits
 		while (running)
 		{
+
                    
+                  
                     // herny cas zaciatok
                     auto startTime = std::chrono::high_resolution_clock::now();
                     
-                   // if(pong->getCanStart()){}
+                    
+
 			SDL_Event event;
                         if(pong->getCanStart()){ 
 			while (SDL_PollEvent(&event))
@@ -242,20 +247,42 @@ int main(int argc, char** argv) {
                                                 buttons[Buttons::PaddleTwoDown] = true;
                                                 pong->sendToClient('d');
                                         }
+                                        else if (event.key.keysym.sym == SDLK_w)
+                                        {
+                                                buttons[Buttons::PaddleOneUp] = true;
+                                        }
+                                        else if (event.key.keysym.sym == SDLK_s)
+                                        {
+                                                buttons[Buttons::PaddleOneDown] = true;
+                                        }
+                                        else if (event.key.keysym.sym == SDLK_UP)
+                                        {
+                                                buttons[Buttons::PaddleTwoUp] = true;
+                                        }
+                                        else if (event.key.keysym.sym == SDLK_DOWN)
+                                        {
+                                                buttons[Buttons::PaddleTwoDown] = true;
+
+                                        }
                                 }
                                 else if (event.type == SDL_KEYUP)
                                 {
                                     if (event.key.keysym.sym == SDLK_w)
                                     {
                                             buttons[Buttons::PaddleOneUp] = false;
+
                                             buttons[Buttons::PaddleTwoUp] = false;
                                             pong->sendToClient(' ');
+
                                     }
                                     else if (event.key.keysym.sym == SDLK_s)
                                     {
                                             buttons[Buttons::PaddleOneDown] = false;
+
                                             buttons[Buttons::PaddleTwoDown] = false;
                                             pong->sendToClient(' ');
+
+
                                     }
                                     else if (event.key.keysym.sym == SDLK_UP)
                                     {
@@ -328,9 +355,19 @@ int main(int argc, char** argv) {
 
                                             playerOneScoreText.SetScore(playerOneScore);
                                     }
+
                         }
                     }
-			// Clear the window to black
+
+                                
+                                if(playerOneScore == 10 || playerTwoScore == 10) 
+                                {
+                                    running = false;
+                                    
+                                }
+                        
+                    
+                	// Clear the window to black
 			SDL_SetRenderDrawColor(renderer, 0x0, 0x0, 0x0, 0xFF);
 			SDL_RenderClear(renderer);
                         
@@ -373,6 +410,7 @@ int main(int argc, char** argv) {
                            buttons[Buttons::PaddleOneUp] = false;
                            }
                        }
+        
                        
                        
                        
