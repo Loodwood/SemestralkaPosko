@@ -49,6 +49,8 @@ int clientPong::clientConnect() {
 
     pthread_t thread;
     pthread_create(&thread, NULL, &clientPong::rcvHelper, this);
+    
+    return 0;
 }
 
 int clientPong::sendToClient(char direction) {
@@ -64,5 +66,6 @@ int clientPong::sendToClient(char direction) {
         perror("ERROR writing to socket");
         exit(1);
     }
+    return 0;
 }
 
