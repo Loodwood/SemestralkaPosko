@@ -16,6 +16,7 @@
 int main(int argc , char *argv[])
 {
     //int connectedBoth = FALSE;
+    int vyhral;
     int opt = TRUE;
     int master_socket , addrlen , new_socket , client_socket[2] ,
             max_clients = 2 , activity, i , valread , sd;
@@ -169,7 +170,12 @@ int main(int argc , char *argv[])
                         (socklen_t*)&addrlen);
                     printf("Host disconnected , ip %s , port %d \n" ,
                            inet_ntoa(address.sin_addr) , ntohs(address.sin_port));
-
+                    
+                    if(vyhral== 0) {
+                        printf("Vyhral prvy hrac \n");
+                    }else {
+                        printf("Vyhral druhy hrac \n");
+                    }
                     //Close the socket and mark as 0 in list for reuse
                     close( sd );
                     client_socket[i] = 0;
@@ -180,6 +186,14 @@ int main(int argc , char *argv[])
                 {
                     //set the string terminating NULL byte on the end
                     //of the data read
+                 
+                    
+                    if(buffer[0] == 'e'){
+                        send(client_socket[0],buffer, 2, 0 );
+                        send(client_socket[1],buffer, 2, 0 );
+                        printf("Send ready sign 'e' to both clients\n");
+                    }
+                    
                     if (i == 0) {
                         char bufferDirection[2];
                         bufferDirection[0]= buffer[0];
@@ -190,17 +204,10 @@ int main(int argc , char *argv[])
                         char bufferDirection[2];
                         bufferDirection[0]= buffer[0];
                         bufferDirection[1] = '\0';
-                        if(bufferDirection[0] == 'e'){
-                        send(client_socket[0],bufferDirection, 2, 0 );
-                        send(client_socket[1],bufferDirection, 2, 0 );
-                        printf("Send ready sign 'e' to both clients\n");
-                        }else{
+                        
                         sd = client_socket[0];
                         send(sd , bufferDirection , 2 , 0 );
-                        }   
-                        
-                                         
-                        
+                          
                         
                     }
                 }

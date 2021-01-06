@@ -368,9 +368,9 @@ int main(int argc, char** argv) {
                         paddleTwo.Update(dt);
                         
                         // Update the ball position
-                         cout << pong->getStartGame() << endl;
+                         
                         if(pong->getStartGame()) {
-                            cout << "som tu " << endl;
+                           
                             ball.Update(dt);
                         }
                         
@@ -415,6 +415,11 @@ int main(int argc, char** argv) {
                                 
                                 if(playerOneScore == 10 || playerTwoScore == 10) 
                                 {
+                                    if(playerOneScore == 10 ) {
+                                        pong->sendToClient('p');
+                                    }else if (playerTwoScore == 10) {
+                                        pong->sendToClient('d');
+                                    }
                                     running = false;
                                     
                                 }

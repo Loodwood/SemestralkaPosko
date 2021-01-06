@@ -71,7 +71,7 @@ public:
             
             char letter = buffer[0];
             if (letter == 'c') {
-                std::cout << "Hra pripravena, startujem... " << std::endl;
+                std::cout << "Hra pripravena, startujem...stlac Tab pre Start " << std::endl;
                 
                 canStart = true;
                 continue;
@@ -82,6 +82,7 @@ public:
                 canStartGame = true;
                 continue;
             }
+           
             std::cout << "prisla direction : " << letter << std::endl;
             this->direction = buffer[0]; 
            
