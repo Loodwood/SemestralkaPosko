@@ -15,6 +15,8 @@
 #include <arpa/inet.h>
 #include <iostream>
 
+using namespace std;
+
 class clientPong
 {
 
@@ -23,17 +25,19 @@ private:
     int socketClient;
     char direction;
     int clientToSendToID;
-    int startX;
-    int startY;
+    float startX;
+    float startY;
     bool canStart;
+    bool canStartGame;
     int sockfd;
 public:
     char getDirection() {
         return direction;
     }
     bool getCanStart() {return canStart;}
-    int getStartX() {return startX;}
-    int getStartY() {return startY;}
+    bool getStartGame() {return canStartGame;}
+    float getStartX() {return startX;}
+    float getStartY() {return startY;}
     int clientConnect();
     clientPong();
     // vlakno na spustenie hry a ziskavanie vstupov od hracov cez sockety
@@ -56,20 +60,32 @@ public:
             std::cout << "clientPong.h : invalid value in idFromBuffer" << std::endl;
             perror("invalid idFromBuffer variable");
         }
+        // cita co pride 
         while (1) {
             n = read(sockfd, buffer, 2);
             if (n < 0) {
                 perror("ERROR reading from socket");
                 //exit(1);
             }
+            
+            
             char letter = buffer[0];
             if (letter == 'c') {
                 std::cout << "Hra pripravena, startujem... " << std::endl;
+                
                 canStart = true;
                 continue;
             }
+            
+            if (letter == 'e') {
+                std::cout << "spustena hra : " << std::endl;
+                canStartGame = true;
+                continue;
+            }
             std::cout << "prisla direction : " << letter << std::endl;
-            this->direction = buffer[0];
+            this->direction = buffer[0]; 
+           
+            
 
         }
 
@@ -80,5 +96,6 @@ public:
     void * recieveData(void * sockID);
     int getClientID();
     int sendToClient(char direction);
+    int sendToClientBallPosition(char x, char y);
 };
 

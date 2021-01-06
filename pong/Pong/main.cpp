@@ -204,10 +204,10 @@ int main(int argc, char** argv) {
 		while (running)
 		{
 
-                   
-                  
-                    // herny cas zaciatok
+                         // herny cas zaciatok
                     auto startTime = std::chrono::high_resolution_clock::now();
+                  
+                   
                     
                     
 
@@ -215,6 +215,7 @@ int main(int argc, char** argv) {
                         if(pong->getCanStart()){ 
 			while (SDL_PollEvent(&event))
 			{
+                           
 				if (event.type == SDL_QUIT)
 				{
 					running = false;
@@ -222,11 +223,16 @@ int main(int argc, char** argv) {
                                 // pozriem sa ci som stlacil esc 
 				else if (event.type == SDL_KEYDOWN)
 				{
+                                   
                                     
 					if (event.key.keysym.sym == SDLK_ESCAPE)
 					{
 						running = false;
 					}
+                                        else if(event.key.keysym.sym == SDLK_TAB)
+                                        {
+                                            pong->sendToClient('e');
+                                        }
                                         else if (event.key.keysym.sym == SDLK_w && pong->getClientID()==0)
                                         {
                                                 buttons[Buttons::PaddleOneUp] = true;
@@ -352,12 +358,21 @@ int main(int argc, char** argv) {
 	{
 		paddleTwo.velocity.y = 0.0f;
 	}
+                        
+                        
+                        
+                   
+                        
                         // Update the paddle positions
                         paddleOne.Update(dt);
                         paddleTwo.Update(dt);
                         
                         // Update the ball position
-                        //ball.Update(dt);
+                         cout << pong->getStartGame() << endl;
+                        if(pong->getStartGame()) {
+                            cout << "som tu " << endl;
+                            ball.Update(dt);
+                        }
                         
                        // Check collisions
                         Contact contact1 = CheckPaddleCollision(ball, paddleOne);
@@ -390,8 +405,13 @@ int main(int argc, char** argv) {
                                     }
 
                         }
-                    }
-
+                        
+                         
+                    
+                        
+                     
+                        
+}
                                 
                                 if(playerOneScore == 10 || playerTwoScore == 10) 
                                 {
@@ -445,7 +465,7 @@ int main(int argc, char** argv) {
                         
                         // Calculate frame time
                         auto stopTime = std::chrono::high_resolution_clock::now();
-                        dt = std::chrono::duration<float, std::chrono::milliseconds::period>(stopTime - startTime).count();
+                        dt = std::chrono::duration<float, std::chrono::milliseconds::period>(stopTime - startTime).count();  
                         
                         
 		}
@@ -461,7 +481,6 @@ int main(int argc, char** argv) {
         }
     return 0;
 };
-
 
 
 

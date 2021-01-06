@@ -7,6 +7,7 @@ clientPong::clientPong() {
     startY = -1;
     clientConnect();
     canStart = false;
+    canStartGame = false;
 }
 
 int clientPong::getClientID() {
@@ -55,9 +56,32 @@ int clientPong::clientConnect() {
 
 int clientPong::sendToClient(char direction) {
 
-    char buffer[2];
+    char buffer[4];
     buffer[0] = direction;
     buffer[1] = '\0';
+   
+    
+  
+    
+    
+
+    // Send message to the server
+    int n = write(sockfd, buffer, strlen(buffer));
+
+    if (n < 0) {
+        perror("ERROR writing to socket");
+        exit(1);
+    }
+    return 0;
+}
+
+int clientPong::sendToClientBallPosition(char x, char y) {
+
+    char buffer[4];
+    buffer[0] = x;
+    buffer[1] = '\0';
+    buffer[2] = y;
+    buffer[4] = '\0';
 
     // Send message to the server
     int n = write(sockfd, buffer, strlen(buffer));
