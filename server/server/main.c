@@ -190,8 +190,18 @@ int main(int argc , char *argv[])
                         char bufferDirection[2];
                         bufferDirection[0]= buffer[0];
                         bufferDirection[1] = '\0';
+                        if(bufferDirection[0] == 'e'){
+                        send(client_socket[0],bufferDirection, 2, 0 );
+                        send(client_socket[1],bufferDirection, 2, 0 );
+                        printf("Send ready sign 'e' to both clients\n");
+                        }else{
                         sd = client_socket[0];
                         send(sd , bufferDirection , 2 , 0 );
+                        }   
+                        
+                                         
+                        
+                        
                     }
                 }
             }
