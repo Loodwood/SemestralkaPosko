@@ -247,6 +247,7 @@ int main(int argc, char** argv) {
                                                 buttons[Buttons::PaddleTwoDown] = true;
                                                 pong->sendToClient('d');
                                         }
+                                        /*
                                         else if (event.key.keysym.sym == SDLK_w)
                                         {
                                                 buttons[Buttons::PaddleOneUp] = true;
@@ -264,6 +265,7 @@ int main(int argc, char** argv) {
                                                 buttons[Buttons::PaddleTwoDown] = true;
 
                                         }
+                                         */
                                 }
                                 else if (event.type == SDL_KEYUP)
                                 {
@@ -295,6 +297,36 @@ int main(int argc, char** argv) {
                                 }
 			}
                         
+                        
+                         //moving enemy paddle 
+                       
+                       if(pong->getClientID()==0){
+                           if(pong->getDirection()=='u'){
+                           buttons[Buttons::PaddleTwoUp] = true;
+                           
+                           } else if(pong->getDirection()=='d'){
+                           buttons[Buttons::PaddleTwoDown] = true;
+                           
+                           }else if(pong->getDirection()==' '){
+                           buttons[Buttons::PaddleTwoDown] = false;
+                           buttons[Buttons::PaddleTwoUp] = false;
+                           }                             
+                       }else {
+                           if(pong->getDirection()=='u'){
+                           buttons[Buttons::PaddleOneUp] = true;
+                           
+                           } else if(pong->getDirection()=='d'){
+                           buttons[Buttons::PaddleOneDown] = true;
+                           
+                           }else if(pong->getDirection()==' '){
+                           buttons[Buttons::PaddleOneDown] = false;
+                           buttons[Buttons::PaddleOneUp] = false;
+                           }
+                       }
+        
+                        
+                        
+                        
          if (buttons[Buttons::PaddleOneUp])
 	{
 		paddleOne.velocity.y = -PADDLE_SPEED;
@@ -325,12 +357,13 @@ int main(int argc, char** argv) {
                         paddleTwo.Update(dt);
                         
                         // Update the ball position
-                        ball.Update(dt);
+                        //ball.Update(dt);
                         
                        // Check collisions
                         Contact contact1 = CheckPaddleCollision(ball, paddleOne);
                         Contact contact2 = CheckPaddleCollision(ball, paddleTwo);
                         Contact contact = CheckWallCollision(ball);
+                        
                         if (contact1.type != CollisionType::None)
                         {
                                 ball.CollideWithPaddle(contact1);
@@ -385,32 +418,7 @@ int main(int argc, char** argv) {
                        
                        }
                        
-                       //moving enemy paddle 
-                       
-                       if(pong->getClientID()==0){
-                           if(pong->getDirection()=='u'){
-                           buttons[Buttons::PaddleTwoUp] = true;
-                           
-                           } else if(pong->getDirection()=='d'){
-                           buttons[Buttons::PaddleTwoDown] = true;
-                           
-                           }else if(pong->getDirection()==' '){
-                           buttons[Buttons::PaddleTwoDown] = false;
-                           buttons[Buttons::PaddleTwoUp] = false;
-                           }                             
-                       }else {
-                           if(pong->getDirection()=='u'){
-                           buttons[Buttons::PaddleOneUp] = true;
-                           
-                           } else if(pong->getDirection()=='d'){
-                           buttons[Buttons::PaddleOneDown] = true;
-                           
-                           }else if(pong->getDirection()==' '){
-                           buttons[Buttons::PaddleOneDown] = false;
-                           buttons[Buttons::PaddleOneUp] = false;
-                           }
-                       }
-        
+                      
                        
                        
                        
@@ -420,8 +428,12 @@ int main(int argc, char** argv) {
                        ball.Draw(renderer);
                        
                        // Draw the paddles
-                       paddleOne.Draw(renderer);
-                       paddleTwo.Draw(renderer);
+                      
+                          paddleOne.Draw(renderer);
+                     
+                          paddleTwo.Draw(renderer);
+
+                      
                        
                        // Display the scores
                         playerOneScoreText.Draw();
