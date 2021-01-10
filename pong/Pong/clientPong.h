@@ -21,27 +21,28 @@ class clientPong
 {
 
 private:
-    int idClient;
-    int socketClient;
+    int clientID;
+    
     char direction;
-    int clientToSendToID;
-    float startX;
-    float startY;
+    int sendToclient;
+    //float startX;             na posielanie suradnic lopticky
+    //float startY;
     bool canStart;
     bool canStartGame;
-    int sockfd;
+    int sockfd;                 // descriptor socket 
+    int clientSocket;
 public:
     char getDirection() {
         return direction;
     }
     bool getCanStart() {return canStart;}
     bool getStartGame() {return canStartGame;}
-    float getStartX() {return startX;}
-    float getStartY() {return startY;}
-    int clientConnect();
+    //float getStartX() {return startX;}
+    //float getStartY() {return startY;}
+    int connectClient();
     clientPong();
     // vlakno na spustenie hry a ziskavanie vstupov od hracov cez sockety
-    void *rcvData(void) {
+    void *recieveDataFromServer(void) {
         char buffer[2];
         int n = read(sockfd, buffer, 2);
 
@@ -50,12 +51,12 @@ public:
             //exit(1);
         }
         int idFromBuffer = (int)buffer[0];
-        idClient = idFromBuffer;
+        clientID = idFromBuffer;
         std::cout << idFromBuffer << std::endl;
         if (idFromBuffer == 0) {
-            clientToSendToID = 1;
+            sendToclient = 1;
         } else if (idFromBuffer == 1) {
-            clientToSendToID = 0;
+            sendToclient = 0;
         } else {
             std::cout << "clientPong.h : invalid value in idFromBuffer" << std::endl;
             perror("invalid idFromBuffer variable");
@@ -91,12 +92,12 @@ public:
         }
 
     }
-    static void *rcvHelper(void *context) {
-        return ((clientPong *)context)->rcvData();
+    static void *recievePomocnik(void *context) {
+        return ((clientPong *)context)->recieveDataFromServer();
     }
     void * recieveData(void * sockID);
     int getClientID();
-    int sendToClient(char direction);
+    int sendToC(char direction);
     int sendToClientBallPosition(char x, char y);
 };
 

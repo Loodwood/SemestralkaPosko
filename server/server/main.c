@@ -16,6 +16,7 @@
 int main(int argc , char *argv[])
 {
     //int connectedBoth = FALSE;
+    // zakladne premene pre nas socket a pripojenie clientskych soocketov
     int vyhral;
     int opt = TRUE;
     int master_socket , addrlen , new_socket , client_socket[2] ,
@@ -23,21 +24,19 @@ int main(int argc , char *argv[])
     int max_sd;
     struct sockaddr_in address;
 
-    char buffer[1025];  //data buffer of 1K
+    char buffer[1025];  //data buffer pre 1K
 
     //set of socket descriptors
     fd_set readfds;
 
-    //a message
-    //char *message = "ECHO Daemon v1.0 \r\n";
 
-    //initialise all client_socket[] to 0 so not checked
+    //initialise all client_socket[] to 0, na inicializovanie dame 0
     for (i = 0; i < max_clients; i++)
     {
-        client_socket[i] = 0;
+        client_socket[i] = 0;               // sockety nachystame pre hracov 
     }
 
-    //create a master socket
+    //create a master socket, vytvorime hlavny socket pre server a komunikaciu
     if( (master_socket = socket(AF_INET , SOCK_STREAM , 0)) == 0)
     {
         perror("socket failed");
@@ -45,7 +44,7 @@ int main(int argc , char *argv[])
     }
 
     //set master socket to allow multiple connections ,
-    //this is just a good habit, it will work without this
+    //it will work without this
     if( setsockopt(master_socket, SOL_SOCKET, SO_REUSEADDR, (char *)&opt,
                    sizeof(opt)) < 0 )
     {
@@ -53,7 +52,7 @@ int main(int argc , char *argv[])
         exit(EXIT_FAILURE);
     }
 
-    //type of socket created
+    //type of socket created, nastavenie nasho socketu 
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = INADDR_ANY;
     address.sin_port = htons( PORT );
@@ -77,6 +76,7 @@ int main(int argc , char *argv[])
     addrlen = sizeof(address);
     puts("Waiting for connections ...");
 
+    // hlavny cyklus, ktory caka na pripojenia
     while(TRUE)
     {
         //clear the socket set
