@@ -3,23 +3,24 @@
 
 clientPong::clientPong() {
     direction = ' ';
-    startX = -1;
-    startY = -1;
-    clientConnect();
+    //startX = -1;
+    //startY = -1;
+    connectClient();
     canStart = false;
     canStartGame = false;
 }
 
 int clientPong::getClientID() {
-    return idClient;
+    return clientID;
 }
 
-int clientPong::clientConnect() {
-   int portno, n;
+int clientPong::connectClient() {
+    // zakladne premenne pre pripojenie client socketu 
+   int portNumber, n;
    struct sockaddr_in serv_addr;
    struct hostent *server;
    char buffer[256];
-   portno = 8888;
+   portNumber = 8888;
 
    // Create a socket point
    sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -38,7 +39,7 @@ int clientPong::clientConnect() {
    bzero((char *) &serv_addr, sizeof(serv_addr));
    serv_addr.sin_family = AF_INET;
    bcopy((char *)server->h_addr, (char *)&serv_addr.sin_addr.s_addr, server->h_length);
-   serv_addr.sin_port = htons(portno);
+   serv_addr.sin_port = htons(portNumber);
 
     //connect to the server
    if (connect(sockfd, (struct sockaddr*)&serv_addr, sizeof(serv_addr)) < 0) {
@@ -49,12 +50,12 @@ int clientPong::clientConnect() {
     printf("Connected\n");
 
     pthread_t thread;
-    pthread_create(&thread, NULL, &clientPong::rcvHelper, this);
+    pthread_create(&thread, NULL, &clientPong::recievePomocnik, this);
     
     return 0;
 }
 
-int clientPong::sendToClient(char direction) {
+int clientPong::sendToC(char direction) {
 
     char buffer[4];
     buffer[0] = direction;

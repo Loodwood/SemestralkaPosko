@@ -231,27 +231,27 @@ int main(int argc, char** argv) {
 					}
                                         else if(event.key.keysym.sym == SDLK_TAB)
                                         {
-                                            pong->sendToClient('e');
+                                            pong->sendToC('e');
                                         }
                                         else if (event.key.keysym.sym == SDLK_w && pong->getClientID()==0)
                                         {
                                                 buttons[Buttons::PaddleOneUp] = true;
-                                                pong->sendToClient('u');
+                                                pong->sendToC('u');
                                         }
                                         else if (event.key.keysym.sym == SDLK_s && pong->getClientID()==0)
                                         {
                                                 buttons[Buttons::PaddleOneDown] = true;
-                                                pong->sendToClient('d');
+                                                pong->sendToC('d');
                                         }
                                         else if (event.key.keysym.sym == SDLK_w && pong->getClientID()==1)
                                         {
                                                 buttons[Buttons::PaddleTwoUp] = true;
-                                                pong->sendToClient('u');
+                                                pong->sendToC('u');
                                         }
                                         else if (event.key.keysym.sym == SDLK_s && pong->getClientID()==1)
                                         {
                                                 buttons[Buttons::PaddleTwoDown] = true;
-                                                pong->sendToClient('d');
+                                                pong->sendToC('d');
                                         }
                                         /*
                                         else if (event.key.keysym.sym == SDLK_w)
@@ -280,7 +280,7 @@ int main(int argc, char** argv) {
                                             buttons[Buttons::PaddleOneUp] = false;
 
                                             buttons[Buttons::PaddleTwoUp] = false;
-                                            pong->sendToClient(' ');
+                                            pong->sendToC(' ');
 
                                     }
                                     else if (event.key.keysym.sym == SDLK_s)
@@ -288,7 +288,7 @@ int main(int argc, char** argv) {
                                             buttons[Buttons::PaddleOneDown] = false;
 
                                             buttons[Buttons::PaddleTwoDown] = false;
-                                            pong->sendToClient(' ');
+                                            pong->sendToC(' ');
 
 
                                     }
@@ -416,9 +416,9 @@ int main(int argc, char** argv) {
                                 if(playerOneScore == 10 || playerTwoScore == 10) 
                                 {
                                     if(playerOneScore == 10 ) {
-                                        pong->sendToClient('p');
+                                        pong->sendToC('p');
                                     }else if (playerTwoScore == 10) {
-                                        pong->sendToClient('d');
+                                        pong->sendToC('d');
                                     }
                                     running = false;
                                     
