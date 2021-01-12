@@ -177,6 +177,7 @@ int main(int argc, char** argv) {
         Ball ball(
             Vec2((WINDOW_WIDTH / 2.0f) - (BALL_WIDTH / 2.0f),
             (WINDOW_HEIGHT / 2.0f) - (BALL_HEIGHT / 2.0f)),Vec2(BALL_SPEED, 0.0f));
+        // nastavime startovaciu poziciu lopticky a posleme na server a clientovi aby ju vedel spracovat a zobrazit 
         float start_poz[2] = {ball.position.x, ball.position.y};
         pong->direc = start_poz;
         
